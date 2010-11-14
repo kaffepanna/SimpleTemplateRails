@@ -3,6 +3,7 @@ gem "haml-rails"
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 gem "declarative_authorization"
 gem "factory_girl_rails", :group => [:development, :test]
+gem "factory_girl_generator", :group => [:development, :test]
 gem "rspec-rails", :group => [:development, :test]
 
 say_status("removing", "prototype", :blue)
