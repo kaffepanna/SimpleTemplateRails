@@ -22,8 +22,8 @@ say_status("fetching", "jQuery UJS adapter (head)", :blue)
 get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "public/javascripts/rails.js"
 
 sentinel = "Application.configure do\n"
-javascripts_development = 'config.action_view.javascript_expansions[:defaults] = %w(jquery.js jquery-ui.js rails.js)'
-javascripts_production = 'config.action_view.javascript_expansions[:defaults] = %w(jquery.min.js jquery-ui.min.js rails.js)'
+javascripts_development = 'config.action_view.javascript_expansions[:jquery] = %w(jquery.js jquery-ui.js rails.js)'
+javascripts_production = 'config.action_view.javascript_expansions[:jquery] = %w(jquery.min.js jquery-ui.min.js rails.js)'
 inject_into_file 'config/environments/development.rb', "\n  #{javascripts_development}\n", :after => sentinel, :verbose => false
 inject_into_file 'config/environments/production.rb', "\n  #{javascripts_production}\n", :after => sentinel, :verbose => false
 
@@ -43,6 +43,7 @@ layout = <<-LAYOUT
     %title #{app_name.humanize}
     %meta{:charset => 'utf-8'}
     = stylesheet_link_tag :all
+    = javascript_include_tag :jquery
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
